@@ -46,8 +46,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_EFFECT_SNAKE_LENGTH 4
 #define RGBLED_NUM 6
-#define RGBLIGHT_LIMIT_VAL 255
+#define RGBLIGHT_LIMIT_VAL 200
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
 #define RGBLIGHT_VAL_STEP 17
