@@ -49,6 +49,8 @@ enum custom_keycodes {
 };
 
 enum macro_keycodes {
+  KC_NEXTSHEET,
+  KC_PREVSHEET,
   KC_SAMPLEMACRO,
 };
 
@@ -59,6 +61,8 @@ enum macro_keycodes {
 #define XXXXXXX KC_NO
 //Macros
 #define M_SAMPLE M(KC_SAMPLEMACRO)
+#define M_NSHEET M(KC_NEXTSHEET)
+#define M_PSHEET M(KC_PREVSHEET)
 
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -120,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
     [_RAISE] = KEYMAP( \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
+      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    M_PSHEET,M_NSHEET,KC_DEL, \
       KC_LCTL, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   JP_MINS, JP_EQL,  KC_PGUP, KC_HOME, JP_BSLS, \
       KC_LSFT, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, KC_F12,  JP_UNDS, KC_PGUP, KC_PGDN, KC_END,  KC_ENT, \
       ADJUST,  KC_ESC,  KC_LGUI, KC_LALT, EISU,    _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
@@ -484,6 +488,21 @@ void matrix_init_user(void) {
     #endif
 }
 
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+    switch(id) {
+    case KC_NEXTSHEET: // id=0のマクロ定義
+        if (record->event.pressed) {
+            return MACRO(D(LCTL), T(PGDN), U(LCTL), END);
+        }
+        break;
+    case KC_PREVSHEET:
+        if (record->event.pressed) {
+            return MACRO(D(LCTL), T(PGUP), U(LCTL), END);
+        }
+        break;
+    }
+    return MACRO_NONE;
+}
 
 #ifdef AUDIO_ENABLE
 
