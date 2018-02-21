@@ -9,3 +9,7 @@ task :write do | t,args |
   next if args['keymap'].nil?
   sh "sudo avrdude -p atmega32u4 -c avr109 -P /dev/tty.usbmodem* -U flash:w:.build/helix_rev2_#{args['keymap']}.hex"
 end
+
+task :imagebuild do | t, args |
+  sh "docker build -t qmk ."
+end
