@@ -442,9 +442,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if(keymap_config.swap_lalt_lgui==false){
           register_code(KC_LANG2);
         }else{
-          SEND_STRING(SS_LALT("`"));
+          register_code(KC_MHEN);
         }
       } else {
+        unregister_code(KC_MHEN);
         unregister_code(KC_LANG2);
       }
       return false;
@@ -454,9 +455,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if(keymap_config.swap_lalt_lgui==false){
           register_code(KC_LANG1);
         }else{
-          SEND_STRING(SS_LALT("`"));
+          register_code(KC_HENK);
         }
       } else {
+        unregister_code(KC_HENK);
         unregister_code(KC_LANG1);
       }
       return false;
