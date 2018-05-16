@@ -11,7 +11,7 @@
         "*.h": "c",
         "*.c": "c",
         "*.cpp": "cpp",
-        "*.hpp": "cpp"
-    },
-    "python.linting.enabled": false
+        "*.hpp": "cpp",
+        "xstddef": "c"
+    }
 }
