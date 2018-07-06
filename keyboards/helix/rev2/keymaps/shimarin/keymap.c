@@ -394,6 +394,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case KEYPAD:
+      if (record->event.pressed) {
+        persistent_default_layer_set(1UL<<_KEYPAD);
+      }
+      return false;
+      break;
     case LOWER:
       if (record->event.pressed) {
           //not sure how to have keyboard check mode and set it to a variable, so my work around
